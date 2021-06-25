@@ -121,6 +121,18 @@ func ListAllSaved(w http.ResponseWriter, r *http.Request) {
 
 // DeleteNote -> delete one note from db
 func DeleteNote(w http.ResponseWriter, r *http.Request) {
+	enableCors(w)
+
+	noteId := r.URL.Query().Get("id")
+
+	id, _ := primitive.ObjectIDFromHex(noteId)
+	filter := bson.M{"_id": id}
+	res, err := collection.DeleteOne(context.Background(), filter)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	json.NewEncoder(w).Encode(res)
 
 }
 

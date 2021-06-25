@@ -21,7 +21,7 @@ func GracefullyShutDown(ctx context.Context) (err error) {
 
 	r.Post("/api/v1/saveNote", SaveNote)
 	r.Put("/api/v1/updateNote", UpdateNote)
-	//r.Delete("/api/v1/updateNote/{id}", DeleteNote)
+	r.Delete("/api/v1/deleteNote", DeleteNote)
 	r.Get("/api/v1/listAllSaved", ListAllSaved)
 	r.Get("/api/v1/listAllArchived", ListAllArchived)
 	r.Get("/health", HealthCheck)
