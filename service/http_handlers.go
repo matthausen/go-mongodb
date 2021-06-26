@@ -7,56 +7,9 @@ import (
 	"log"
 	"net/http"
 	"github.com/matthausen/thirdfort/model"
-	"time"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 )
-const (
-	connectionString = "mongodb+srv://admin:thirdfort123@thirdfortcluster.4twv3.mongodb.net/notes?retryWrites=true&w=majority"
-)
-
-var collection *mongo.Collection
-
-// Initialise the MongoDB client
-func init() {
-	clientOptions := options.Client().ApplyURI(connectionString)
-
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-
-	defer cancel()
-
-	client, err := mongo.Connect(ctx, clientOptions)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Ping the DB
-	err = client.Ping(context.TODO(), nil)
-
-	if err != nil {
-		log.Fatalf("Could not ping db: %v", err)
-	}
-
-	fmt.Println("Connected to MongoDB!")
-
-	collection = client.Database("Thirdfort").Collection("notes")
-
-	fmt.Println("Collection instance created!")
-}
-
-// enableCors -> makes sure we can run the requests from any url
-func enableCors(w http.ResponseWriter) {
-	w.Header().Set("Context-Type", "application/json")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-}
 
 // SaveNote -> Insert a single new note into the DB
 func SaveNote(w http.ResponseWriter, r *http.Request) {
@@ -150,7 +103,11 @@ func ListAllArchived(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(archivedNotes)
 }
 
-func HealthCheck(w http.ResponseWriter, r *http.Request) {
-	json.NewEncoder(w).Encode("All good")
+// enableCors -> makes sure we can run the requests from any url
+func enableCors(w http.ResponseWriter) {
+	w.Header().Set("Context-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 }
+
 

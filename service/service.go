@@ -24,7 +24,6 @@ func GracefullyShutDown(ctx context.Context) (err error) {
 	r.Delete("/api/v1/deleteNote", DeleteNote)
 	r.Get("/api/v1/listAllSaved", ListAllSaved)
 	r.Get("/api/v1/listAllArchived", ListAllArchived)
-	r.Get("/health", HealthCheck)
 
 	srv := &http.Server{
 		Addr:    ":8080",

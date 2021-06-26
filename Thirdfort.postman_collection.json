@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "392b24d4-0d3a-46b1-ab33-7bcfd372e6db",
+		"name": "Thirdfort",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SaveNote",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"My fourth note\",\n    \"archived\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/saveNote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"saveNote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateNote",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"edited note\",\n    \"archived\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/updateNote?id=60d73072b27dede459c2e82f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"updateNote"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "60d73072b27dede459c2e82f"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListAllSaved",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/listAllSaved",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"listAllSaved"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListAllArchived",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/listAllArchived",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"listAllArchived"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteNote",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/deleteNote?id=60d72f08b27dede459c2e82e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"deleteNote"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "60d72f08b27dede459c2e82e"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
